@@ -13,7 +13,7 @@ const { createHash } =require('crypto')
 const SignTesting = async()=>
 {
   const context = createContext('secp256k1')
-  const privateKeyHex = '65e1075a93b19866e715868071d6bd6d193c610744faf1252dd6ed0c785a517b'
+  const privateKeyHex = 'ac3185edd25a530f579a160c5cf1708f0c44ae4ada0f56a86097a11485b10418'
   const privateKey = Secp256k1PrivateKey.fromHex(privateKeyHex)
   const signer = new CryptoFactory(context).newSigner(privateKey)
   

@@ -1,14 +1,13 @@
 import React, {useState, useContext} from 'react'
-import api from "../../api/index"
+import api from "../../../api/index"
 
-const {ORG_NAME,ORG_TYPE} = require('../../core/constant')
+const {ORG_NAME,ORG_TYPE} = require('../../../core/constant')
 
-const {GenerateCryptoMaterials,GetPublicKeyFromPrivateKey} = require('../../utils/generateKey')
+const {GenerateCryptoMaterials,GetPublicKeyFromPrivateKey} = require('../../../utils/generateKey')
 
-const SignTransaction = require('../../utils/signing')
+const SignTransaction = require('../../../utils/signing')
 
-
-function UserPage() {    
+function ManufacturerUserPage() {    
 
     const [username,setUsername] = useState("")
     const [userAddress, setUserAddress] = useState("")
@@ -16,6 +15,10 @@ function UserPage() {
     const [publickey,setPublicKey] = useState("")
     const [tokenValue, setTokenValue] = useState("")
     const [name, setName] = useState("")
+
+    const [dob, setDOB] = useState("")
+    const [aadhar,setAadhar] = useState("")
+    const [passport, setPassport] = useState("")
     
     const [userData, setUserData] = useState(null)
 
@@ -61,7 +64,7 @@ function UserPage() {
         }
         try {
 
-            const result = await api.post("/createuser", payload)
+            const result = await api.post("/manufacturer/createuser", payload)
             //console.log(result.data)
             setUserAddress(result.data.data.address);
 
@@ -77,7 +80,7 @@ function UserPage() {
 
         try {
 
-            const result = await api.get("/address/"+userAddress)       
+            const result = await api.get("/manufacturer/address/"+userAddress)       
             if(result.status == 200)
             {
                 console.log(result.data)
@@ -96,7 +99,7 @@ function UserPage() {
 
         try {
 
-            const result = await api.get("/user/"+username)       
+            const result = await api.get("/manufacturer/user/"+username)       
             if(result.status == 200)
             {
                 console.log(result.data)
@@ -133,7 +136,7 @@ function UserPage() {
         }
         try{
             
-            const result = await api.post("/user/login", payload)
+            const result = await api.post("/manufacturer/user/login", payload)
             if(result.status == 200)
             {
                 console.log(result.data)
@@ -176,6 +179,7 @@ function UserPage() {
         )
     }
 
+    
     const CheckForPrivateKey = ()=>{
 
         const LocalPrivateKey = localStorage.getItem("privatekey")
@@ -215,8 +219,7 @@ function UserPage() {
             </div>
             <CheckForPrivateKey/>
             <div>
-                <h3>Generate Crytpo Materials For user </h3>
-                <input placeholder="Login Token"/> <br/>
+                <h3>Generate Crytpo Materials For user </h3>                
                 <label>Private Key : {privatekey}</label> <br/>
                 <label>Public Key: {publickey}</label>< br/>
                 <button onClick={handleGenerateCrytpo}>Generate Crytpo</button>
@@ -232,7 +235,7 @@ function UserPage() {
 
                 <label>Return User Address <br/> <b>{userAddress} </b> </label>
 
-            </div>
+            </div>           
 
             <div>
                 <h3>Get User Details From Blockchain</h3>
@@ -255,4 +258,4 @@ function UserPage() {
     )
 }
 
-export default UserPage
+export default ManufacturerUserPage
