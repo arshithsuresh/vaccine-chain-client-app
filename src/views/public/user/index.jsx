@@ -27,7 +27,7 @@ function PublicUserPage()
         e.preventDefault()
     
         const userData = {
-            action:"create",
+            action:"createpublic",
             username:username,
             data:{
                 userid:username,
@@ -56,6 +56,7 @@ function PublicUserPage()
             {   
                 const addr = result.data.data.address;                
                 setUserAddress(addr)
+                alert("User Created!")
             }
 
         } catch (error) {
@@ -92,7 +93,8 @@ function PublicUserPage()
 
     return(
         <div>  
-            <h2>Public User Page</h2>          
+            <h2>Public User Page</h2>
+            <button>Get User Details</button>          
             <div style={{display:"block"}}>
                 <h3>Create a Public User </h3>
                 <p><input value={username} onChange={ (e)=>setUsername(e.target.value)} placeholder="Username..."/></p>

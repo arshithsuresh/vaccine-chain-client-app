@@ -12,6 +12,7 @@ import VaccinePage from '../views/vaccine';
 import PublicVaccinePage from '../views/public/vaccine';
 import PublicVerificationPage from '../views/public/verfyCertificate';
 import PublicVerifyVaccinePage from '../views/public/verifyVaccine';
+import DistributerUserPage from '../views/distributer/user';
 
 
 const Routes = ()=>{
@@ -21,6 +22,8 @@ const Routes = ()=>{
                 <Route exact path="/manufacturer" component ={ManufacturerPage} />
                 <Route exact path="/manufacturer/user" component ={ManufacturerUserPage} />
                 <Route exact path="/manufacturer/vaccine" component ={ManufacturerVaccinePage} />
+
+                <Route exact path="/distributer" component = {DistributerUserPage} />
 
                 <Route exact path="/public" component ={UserPage} />
                 <Route exact path="/public/user" component ={PublicUserPage} />
